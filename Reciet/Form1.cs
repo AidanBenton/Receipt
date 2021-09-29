@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Reciet
 {
-    public partial class Form1 : Form
+    public partial class backgroundForm : Form
     {
+        DateTime thisDay = DateTime.Today;
         //Global varibles
         double pStrings = 16.50;
         double pTennisBall = 7.00;
@@ -25,10 +27,8 @@ namespace Reciet
         double total;
         double tendered = 0;
         double change;
-        int I;
-        int II;
-        int III;
-        public Form1()
+        int i;
+        public backgroundForm()
         {
             InitializeComponent();
         }
@@ -50,26 +50,52 @@ namespace Reciet
             //displays subtotal, tax and total
             realTotalLabel.Text = $"{subTotal.ToString("C")}\n\n{tax.ToString("C")}\n\n{total.ToString("c")}";
         }
-         
 
-            
-        
+
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // the inital starting code which gets everything set up for the program to run
             costTypeLabel.Text = $"SubTotal:\n\nTax:\n\nTotal:";
             calculateChangeButton.Enabled = false;
             stringsTextBox.Text = $"0";
             overGripTextBox.Text = $"0";
             tennisBallsTextBox.Text = $"0";
             tenderedTextBox.Text = "0";
+            receiptLabel.Enabled = false;
+            centerReceiptTextLabel.Enabled = false;
+            rightReceiptTextLabel.Enabled = false;
+            leftReceiptTextLabel.Enabled = false;
+            centerReceiptTextLabel.Text = $"\nCustomer Receipt\n ------------------------------------------ \nOrder number: \n{thisDay.ToString("D")}";
+            leftReceiptTextLabel.Text = $"Strings:" +
+                $"\nOvergrip:" +
+                $"\nTennis Balls:" +
+                $"\n\nSubtotal:" +
+                $"\nTax:" +
+                $"\nTotal:" +
+                $"\n\nTendered:" +
+                $"\nChange:" +
+                $"\n\nHave a nice day:";
+            rightReceiptTextLabel.Text = $"{strings}x @{pStrings.ToString()}" +
+               $"\n{overGrip}x @{pOverGrip.ToString()}" +
+               $"\n{tennisBall}x @{pTennisBall.ToString("0.00")}" +
+               $"\n\n{subTotal.ToString("C")}" +
+               $"\n{tax.ToString("C")}" +
+               $"\n{total.ToString("C")}" +
+               $"\n\n{tendered.ToString("C")}" +
+               $"\n{change.ToString("C")}"; 
+
         }
 
         private void calculateChangeButton_Click(object sender, EventArgs e)
         {
+            // calculates and displays change 
             tendered = Convert.ToDouble(tenderedTextBox.Text);
             if (tendered < total)
             {
+                // incase the customer is short
                 changeTypeLabel.Text = $"You are short:";
                 changeLabel.Text = $"{(total - tendered).ToString("C")}";
             }
@@ -80,7 +106,7 @@ namespace Reciet
             }
 
         }
-        //Upgreads to the text boxs making them much easyer to use
+        //Upgreads to the text boxs making them much easier to use
         private void stringsTextBox_Enter(object sender, EventArgs e)
         {
             stringsTextBox.Text = "";
@@ -131,6 +157,45 @@ namespace Reciet
             {
                 tenderedTextBox.Text = "0";
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //makes receipt visable 
+            receiptLabel.Enabled = true;
+            centerReceiptTextLabel.Enabled = true;
+            rightReceiptTextLabel.Enabled = true;
+            leftReceiptTextLabel.Enabled = true;
+            //prints receipt out 
+            for ( i = 0; i < 108; i++)
+            {
+                receiptLabel.Size = new Size(193, i);
+                centerReceiptTextLabel.Size = new Size(186, i);
+                rightReceiptTextLabel.Size = new Size(59, i -218);
+                leftReceiptTextLabel.Size = new Size(59, i - 218);
+                Refresh();
+                Thread.Sleep(3);
+            }
+            for (i = i; i < 277; i++)
+            {
+                receiptLabel.Size = new Size(193, i);
+                rightReceiptTextLabel.Size = new Size(71, i - 93);
+                leftReceiptTextLabel.Size = new Size(113, i - 93);
+                Refresh();
+                Thread.Sleep(3); 
+            }
+        }
+
+        private void newOrderButton_Click(object sender, EventArgs e)
+        {
+             strings = 0;
+             tennisBall = 0;
+             overGrip = 0;
+             tax = 0;
+             total = 0;
+             tendered = 0;
+             change = 0;
+            
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 namespace Reciet
 {
-    partial class Form1
+    partial class backgroundForm
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +45,11 @@ namespace Reciet
             this.changeTypeLabel = new System.Windows.Forms.Label();
             this.changeLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.receiptLabel = new System.Windows.Forms.Label();
+            this.centerReceiptTextLabel = new System.Windows.Forms.Label();
+            this.newOrderButton = new System.Windows.Forms.Button();
+            this.leftReceiptTextLabel = new System.Windows.Forms.Label();
+            this.rightReceiptTextLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // stringsLabel
@@ -116,26 +121,28 @@ namespace Reciet
             // 
             // realTotalLabel
             // 
+            this.realTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.realTotalLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.realTotalLabel.Location = new System.Drawing.Point(99, 112);
             this.realTotalLabel.Name = "realTotalLabel";
-            this.realTotalLabel.Size = new System.Drawing.Size(64, 64);
+            this.realTotalLabel.Size = new System.Drawing.Size(64, 75);
             this.realTotalLabel.TabIndex = 10;
             this.realTotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // costTypeLabel
             // 
+            this.costTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.costTypeLabel.Location = new System.Drawing.Point(12, 112);
             this.costTypeLabel.Name = "costTypeLabel";
-            this.costTypeLabel.Size = new System.Drawing.Size(84, 64);
+            this.costTypeLabel.Size = new System.Drawing.Size(84, 75);
             this.costTypeLabel.TabIndex = 11;
             // 
             // blackBarLabel
             // 
             this.blackBarLabel.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.blackBarLabel.Location = new System.Drawing.Point(12, 188);
+            this.blackBarLabel.Location = new System.Drawing.Point(12, 195);
             this.blackBarLabel.Name = "blackBarLabel";
-            this.blackBarLabel.Size = new System.Drawing.Size(152, 18);
+            this.blackBarLabel.Size = new System.Drawing.Size(152, 11);
             this.blackBarLabel.TabIndex = 12;
             // 
             // tenderedTextBox
@@ -193,12 +200,66 @@ namespace Reciet
             this.button1.TabIndex = 18;
             this.button1.Text = "Print receipt";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form1
+            // receiptLabel
+            // 
+            this.receiptLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.receiptLabel.Location = new System.Drawing.Point(175, 8);
+            this.receiptLabel.Name = "receiptLabel";
+            this.receiptLabel.Size = new System.Drawing.Size(193, 277);
+            this.receiptLabel.TabIndex = 19;
+            this.receiptLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // centerReceiptTextLabel
+            // 
+            this.centerReceiptTextLabel.BackColor = System.Drawing.Color.White;
+            this.centerReceiptTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.centerReceiptTextLabel.Location = new System.Drawing.Point(178, 8);
+            this.centerReceiptTextLabel.Name = "centerReceiptTextLabel";
+            this.centerReceiptTextLabel.Size = new System.Drawing.Size(186, 93);
+            this.centerReceiptTextLabel.TabIndex = 20;
+            this.centerReceiptTextLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // newOrderButton
+            // 
+            this.newOrderButton.Location = new System.Drawing.Point(196, 288);
+            this.newOrderButton.Name = "newOrderButton";
+            this.newOrderButton.Size = new System.Drawing.Size(152, 34);
+            this.newOrderButton.TabIndex = 21;
+            this.newOrderButton.Text = "New order";
+            this.newOrderButton.UseVisualStyleBackColor = true;
+            this.newOrderButton.Click += new System.EventHandler(this.newOrderButton_Click);
+            // 
+            // leftReceiptTextLabel
+            // 
+            this.leftReceiptTextLabel.BackColor = System.Drawing.Color.White;
+            this.leftReceiptTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leftReceiptTextLabel.Location = new System.Drawing.Point(193, 101);
+            this.leftReceiptTextLabel.Name = "leftReceiptTextLabel";
+            this.leftReceiptTextLabel.Size = new System.Drawing.Size(113, 184);
+            this.leftReceiptTextLabel.TabIndex = 22;
+            // 
+            // rightReceiptTextLabel
+            // 
+            this.rightReceiptTextLabel.BackColor = System.Drawing.Color.White;
+            this.rightReceiptTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rightReceiptTextLabel.Location = new System.Drawing.Point(282, 101);
+            this.rightReceiptTextLabel.Name = "rightReceiptTextLabel";
+            this.rightReceiptTextLabel.Size = new System.Drawing.Size(71, 184);
+            this.rightReceiptTextLabel.TabIndex = 23;
+            this.rightReceiptTextLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // backgroundForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 333);
+            this.ClientSize = new System.Drawing.Size(376, 329);
+            this.Controls.Add(this.rightReceiptTextLabel);
+            this.Controls.Add(this.leftReceiptTextLabel);
+            this.Controls.Add(this.newOrderButton);
+            this.Controls.Add(this.centerReceiptTextLabel);
+            this.Controls.Add(this.receiptLabel);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.changeLabel);
             this.Controls.Add(this.changeTypeLabel);
@@ -215,7 +276,7 @@ namespace Reciet
             this.Controls.Add(this.tennisBallsLabel);
             this.Controls.Add(this.overGripLabel);
             this.Controls.Add(this.stringsLabel);
-            this.Name = "Form1";
+            this.Name = "backgroundForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -241,6 +302,11 @@ namespace Reciet
         private System.Windows.Forms.Label changeTypeLabel;
         private System.Windows.Forms.Label changeLabel;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label receiptLabel;
+        private System.Windows.Forms.Label centerReceiptTextLabel;
+        private System.Windows.Forms.Button newOrderButton;
+        private System.Windows.Forms.Label leftReceiptTextLabel;
+        private System.Windows.Forms.Label rightReceiptTextLabel;
     }
 }
 
