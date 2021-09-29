@@ -68,25 +68,6 @@ namespace Reciet
             centerReceiptTextLabel.Enabled = false;
             rightReceiptTextLabel.Enabled = false;
             leftReceiptTextLabel.Enabled = false;
-            centerReceiptTextLabel.Text = $"\nCustomer Receipt\n ------------------------------------------ \nOrder number: \n{thisDay.ToString("D")}";
-            leftReceiptTextLabel.Text = $"Strings:" +
-                $"\nOvergrip:" +
-                $"\nTennis Balls:" +
-                $"\n\nSubtotal:" +
-                $"\nTax:" +
-                $"\nTotal:" +
-                $"\n\nTendered:" +
-                $"\nChange:" +
-                $"\n\nHave a nice day:";
-            rightReceiptTextLabel.Text = $"{strings}x @{pStrings.ToString()}" +
-               $"\n{overGrip}x @{pOverGrip.ToString()}" +
-               $"\n{tennisBall}x @{pTennisBall.ToString("0.00")}" +
-               $"\n\n{subTotal.ToString("C")}" +
-               $"\n{tax.ToString("C")}" +
-               $"\n{total.ToString("C")}" +
-               $"\n\n{tendered.ToString("C")}" +
-               $"\n{change.ToString("C")}"; 
-
         }
 
         private void calculateChangeButton_Click(object sender, EventArgs e)
@@ -101,7 +82,7 @@ namespace Reciet
             }
             else
             {
-                change = total - tendered;
+                change = total - tendered*(-1);
                 changeLabel.Text = $"{change.ToString("C")}";
             }
 
@@ -161,6 +142,24 @@ namespace Reciet
 
         private void button1_Click(object sender, EventArgs e)
         {
+            centerReceiptTextLabel.Text = $"\nCustomer Receipt\n ------------------------------------------ \nOrder number: \n{thisDay.ToString("D")}";
+            leftReceiptTextLabel.Text = $"Strings:" +
+                $"\nOvergrip:" +
+                $"\nTennis Balls:" +
+                $"\n\nSubtotal:" +
+                $"\nTax:" +
+                $"\nTotal:" +
+                $"\n\nTendered:" +
+                $"\nChange:" +
+                $"\n\nHave a nice day:";
+            rightReceiptTextLabel.Text = $"{strings}x @{pStrings.ToString()}" +
+               $"\n{overGrip}x @{pOverGrip.ToString()}" +
+               $"\n{tennisBall}x @{pTennisBall.ToString("0.00")}" +
+               $"\n\n{subTotal.ToString("C")}" +
+               $"\n{tax.ToString("C")}" +
+               $"\n{total.ToString("C")}" +
+               $"\n\n{tendered.ToString("C")}" +
+               $"\n{change.ToString("C")}";
             //makes receipt visable 
             receiptLabel.Enabled = true;
             centerReceiptTextLabel.Enabled = true;
