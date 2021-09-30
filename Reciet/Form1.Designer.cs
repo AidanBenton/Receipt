@@ -29,6 +29,7 @@ namespace Reciet
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(backgroundForm));
             this.stringsLabel = new System.Windows.Forms.Label();
             this.overGripLabel = new System.Windows.Forms.Label();
             this.tennisBallsLabel = new System.Windows.Forms.Label();
@@ -44,12 +45,13 @@ namespace Reciet
             this.calculateChangeButton = new System.Windows.Forms.Button();
             this.changeTypeLabel = new System.Windows.Forms.Label();
             this.changeLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.printReceiptButton = new System.Windows.Forms.Button();
             this.receiptLabel = new System.Windows.Forms.Label();
             this.centerReceiptTextLabel = new System.Windows.Forms.Label();
             this.newOrderButton = new System.Windows.Forms.Button();
             this.leftReceiptTextLabel = new System.Windows.Forms.Label();
             this.rightReceiptTextLabel = new System.Windows.Forms.Label();
+            this.catchLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // stringsLabel
@@ -121,6 +123,7 @@ namespace Reciet
             // 
             // realTotalLabel
             // 
+            this.realTotalLabel.BackColor = System.Drawing.Color.Transparent;
             this.realTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.realTotalLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.realTotalLabel.Location = new System.Drawing.Point(99, 112);
@@ -131,6 +134,7 @@ namespace Reciet
             // 
             // costTypeLabel
             // 
+            this.costTypeLabel.BackColor = System.Drawing.Color.Transparent;
             this.costTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.costTypeLabel.Location = new System.Drawing.Point(12, 112);
             this.costTypeLabel.Name = "costTypeLabel";
@@ -192,15 +196,15 @@ namespace Reciet
             this.changeLabel.TabIndex = 17;
             this.changeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // button1
+            // printReceiptButton
             // 
-            this.button1.Location = new System.Drawing.Point(11, 288);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(152, 34);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Print receipt";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.printReceiptButton.Location = new System.Drawing.Point(11, 288);
+            this.printReceiptButton.Name = "printReceiptButton";
+            this.printReceiptButton.Size = new System.Drawing.Size(152, 34);
+            this.printReceiptButton.TabIndex = 18;
+            this.printReceiptButton.Text = "Print receipt";
+            this.printReceiptButton.UseVisualStyleBackColor = true;
+            this.printReceiptButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // receiptLabel
             // 
@@ -250,17 +254,27 @@ namespace Reciet
             this.rightReceiptTextLabel.TabIndex = 23;
             this.rightReceiptTextLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // catchLabel
+            // 
+            this.catchLabel.AutoSize = true;
+            this.catchLabel.BackColor = System.Drawing.Color.Transparent;
+            this.catchLabel.Location = new System.Drawing.Point(12, 112);
+            this.catchLabel.Name = "catchLabel";
+            this.catchLabel.Size = new System.Drawing.Size(0, 13);
+            this.catchLabel.TabIndex = 24;
+            // 
             // backgroundForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 329);
+            this.ClientSize = new System.Drawing.Size(379, 329);
+            this.Controls.Add(this.catchLabel);
             this.Controls.Add(this.rightReceiptTextLabel);
             this.Controls.Add(this.leftReceiptTextLabel);
             this.Controls.Add(this.newOrderButton);
             this.Controls.Add(this.centerReceiptTextLabel);
             this.Controls.Add(this.receiptLabel);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.printReceiptButton);
             this.Controls.Add(this.changeLabel);
             this.Controls.Add(this.changeTypeLabel);
             this.Controls.Add(this.calculateChangeButton);
@@ -276,6 +290,7 @@ namespace Reciet
             this.Controls.Add(this.tennisBallsLabel);
             this.Controls.Add(this.overGripLabel);
             this.Controls.Add(this.stringsLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "backgroundForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -301,12 +316,13 @@ namespace Reciet
         private System.Windows.Forms.Button calculateChangeButton;
         private System.Windows.Forms.Label changeTypeLabel;
         private System.Windows.Forms.Label changeLabel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button printReceiptButton;
         private System.Windows.Forms.Label receiptLabel;
         private System.Windows.Forms.Label centerReceiptTextLabel;
         private System.Windows.Forms.Button newOrderButton;
         private System.Windows.Forms.Label leftReceiptTextLabel;
         private System.Windows.Forms.Label rightReceiptTextLabel;
+        private System.Windows.Forms.Label catchLabel;
     }
 }
 

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
-
+using System.Media; 
 namespace Reciet
 {
     public partial class backgroundForm : Form
@@ -28,32 +28,11 @@ namespace Reciet
         double tendered = 0;
         double change;
         int i;
+        int startOver = 0;
         public backgroundForm()
         {
             InitializeComponent();
         }
-
-        private void calculateButton_Click(object sender, EventArgs e)
-        {
-
-
-
-            calculateChangeButton.Enabled = Enabled;
-            strings = Convert.ToInt32(stringsTextBox.Text);
-            tennisBall = Convert.ToInt32(tennisBallsTextBox.Text);
-            overGrip = Convert.ToInt32(overGripTextBox.Text);
-
-            //calculating subtotal, tax and total
-            subTotal = (strings * pStrings) + (overGrip * pOverGrip) + (tennisBall * pTennisBall);
-            tax = tTax * subTotal;
-            total = tax + subTotal;
-            //displays subtotal, tax and total
-            realTotalLabel.Text = $"{subTotal.ToString("C")}\n\n{tax.ToString("C")}\n\n{total.ToString("c")}";
-        }
-
-
-
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -68,12 +47,48 @@ namespace Reciet
             centerReceiptTextLabel.Enabled = false;
             rightReceiptTextLabel.Enabled = false;
             leftReceiptTextLabel.Enabled = false;
+            printReceiptButton.Enabled = false;
+            newOrderButton.Enabled = false;
+            this.Width = 191;
+        }
+        private void calculateButton_Click(object sender, EventArgs e)
+        {          
+            try
+            {
+                //grabing info on the qauntite of items the user wants to purchase            
+                strings = Convert.ToInt32(stringsTextBox.Text);
+                tennisBall = Convert.ToInt32(tennisBallsTextBox.Text);
+                overGrip = Convert.ToInt32(overGripTextBox.Text);
+            }
+            catch
+            {
+                costTypeLabel.Text = $"";
+                catchLabel.Text = "please enter a number.";
+                return; 
+            }
+            costTypeLabel.Text = $"SubTotal:\n\nTax:\n\nTotal:";
+            catchLabel.Text = "";
+            //calculating subtotal, tax and total
+            subTotal = (strings * pStrings) + (overGrip * pOverGrip) + (tennisBall * pTennisBall);
+            tax = tTax * subTotal;
+            total = tax + subTotal;
+            //displays subtotal, tax and total
+            realTotalLabel.Text = $"{subTotal.ToString("C")}\n\n{tax.ToString("C")}\n\n{total.ToString("c")}";
+            //turns on calculate button
+            calculateChangeButton.Enabled = Enabled;
         }
 
         private void calculateChangeButton_Click(object sender, EventArgs e)
         {
-            // calculates and displays change 
-            tendered = Convert.ToDouble(tenderedTextBox.Text);
+            try
+            {
+                // calculates and displays change 
+                tendered = Convert.ToDouble(tenderedTextBox.Text);
+            }
+            catch
+            {
+                tenderedLabel.Text = $"please enter a number";
+            }
             if (tendered < total)
             {
                 // incase the customer is short
@@ -82,8 +97,9 @@ namespace Reciet
             }
             else
             {
-                change = total - tendered*(-1);
+                change = (total - tendered)*(-1);
                 changeLabel.Text = $"{change.ToString("C")}";
+                printReceiptButton.Enabled = true;
             }
 
         }
@@ -142,6 +158,11 @@ namespace Reciet
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //receipt printing process
+            SoundPlayer printing = new SoundPlayer(Properties.Resources.printingSound);
+            startOver = 0; 
+            //changes width
+            this.Width = 395;
             centerReceiptTextLabel.Text = $"\nCustomer Receipt\n ------------------------------------------ \nOrder number: \n{thisDay.ToString("D")}";
             leftReceiptTextLabel.Text = $"Strings:" +
                 $"\nOvergrip:" +
@@ -166,6 +187,7 @@ namespace Reciet
             rightReceiptTextLabel.Enabled = true;
             leftReceiptTextLabel.Enabled = true;
             //prints receipt out 
+            printing.Play();
             for ( i = 0; i < 108; i++)
             {
                 receiptLabel.Size = new Size(193, i);
@@ -183,10 +205,17 @@ namespace Reciet
                 Refresh();
                 Thread.Sleep(3); 
             }
+            newOrderButton.Enabled = true; 
+            if (startOver == 1)
+            {
+
+            }
+            
         }
 
         private void newOrderButton_Click(object sender, EventArgs e)
         {
+            startOver = 1; 
              strings = 0;
              tennisBall = 0;
              overGrip = 0;
@@ -194,7 +223,13 @@ namespace Reciet
              total = 0;
              tendered = 0;
              change = 0;
-            
+            stringsTextBox.Text = "0";
+            overGripTextBox.Text = "0";
+            tennisBallsTextBox.Text = "0";
+            realTotalLabel.Text = ""; 
+            tenderedTextBox.Text = "0";
+            this.Width = 191;
+            changeLabel.Text = $"";
         }
     }
 }
