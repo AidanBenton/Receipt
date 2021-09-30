@@ -101,7 +101,7 @@ namespace Reciet
                 changeLabel.Text = $"{change.ToString("C")}";
                 printReceiptButton.Enabled = true;
             }
-
+            //
         }
         //Upgreads to the text boxs making them much easier to use
         private void stringsTextBox_Enter(object sender, EventArgs e)
